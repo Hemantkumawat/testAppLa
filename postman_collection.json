@@ -1,0 +1,667 @@
+{
+	"info": {
+		"_postman_id": "44283f8e-429e-41a7-a597-3994d63113ac",
+		"name": "Test App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11562025"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"try{",
+									"    if(pm.response.to.have.status(200)){",
+									"        var body = pm.response.json();",
+									"        console.log(body);",
+									"            pm.collectionVariables.set('currentUserId',body.data.user.id);",
+									"            pm.collectionVariables.set('currentUserEmail',body.data.user.email);",
+									"            pm.collectionVariables.set('authToken',body.data.token);",
+									"    }else{",
+									"        throw Error(\"Unable to Register\")",
+									"    }",
+									"}catch(e){",
+									"    console.log(e);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"{{$randomFirstName}}\",\n    \"last_name\":\"{{$randomLastName}}\",\n    \"email\":\"{{$randomEmail}}\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}register",
+							"host": [
+								"{{baseUrl}}register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"Nichole\",\n    \"last_name\":\"Berge\",\n    \"email\":\"Neil29@gmail.com\",\n    \"password\":\"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/register",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:25:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:25:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User Registered Successfully\",\n    \"data\": {\n        \"user\": {\n            \"first_name\": \"Kraig\",\n            \"last_name\": \"Johnson\",\n            \"email\": \"orion84@hotmail.com\",\n            \"updated_at\": \"2022-11-22T06:25:02.000000Z\",\n            \"created_at\": \"2022-11-22T06:25:02.000000Z\",\n            \"id\": 7\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYWYwOWMzMjA0ZDdhMjhkZjRjOWQxMGMxNzdhZDhmNGE3YWFkZTU2MTRmOGJiZWExMWI1NmI5MGI1MmMxOGQ5ODhkNDFjNWIwYjg3Njg5YzUiLCJpYXQiOjE2NjkwOTgzMDIuMzI0MTIxLCJuYmYiOjE2NjkwOTgzMDIuMzI0MTIyLCJleHAiOjE3MDA2MzQzMDIuMzE5MTgsInN1YiI6IjciLCJzY29wZXMiOltdfQ.lhfns_tHVhjHPgALUwJe7UubUogMZeqbD1UlxvwEHTUtHoSEHw_qyo-7R17YzPD8R0sK0LFN6QZ8POCZWp_PjoIH1Sl1A4nNsgqLfCOXX8xBd0ABwBQwdlBJdDwiR6FDS2rtKE7rSZ20FHlEn1HB5ZzbGEG_kIsKpTdRlPBW_RPIY5kN61DnJyF_aM0gOQZsd8WbXjpzhSFBhHR7OpTvUS0crVYTevWHsiNW-YSkumyxLtSI9ykBVs2cIcq1d5V7d2HYSAjT2s5d4kkqULUeyfPZ6O1efo5OVD4U1v5BfoAjT72RssJn6OmyW0nUYi1W2zsK5UaAWBi_OlMtRN_9oFTvKSrGXgOdAXP2OUM8Yi42YXL7tF_1CjVmfu-nLHb2E2qE6BjinSy2nfOFgo2inNJNPIAQWFHhmW6Dno6pmPj0CPNRFH0f6H_RRDMW5976aCwfK7OrLh8qYf9nvhbLjmMtq6isqyhrKDo1byWwsXjcVZ8O-atjXsVIiwI5H8JW7QOnepVvtDHkaSSvDFLQGDukm3rF6pSJpqpsO1dMDLekXa5ZPyNMg6qkSDoqjnQo9s_2JzdPfTbuW-3jYue9eVgZhILd9SWNrvzuWXTvA-sfG0c36EwrvnWLVvEri91xiKl2bBJa-nd0h9hf_zk7jxJwfaqz8fBCyOMUlJeFyDY\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// try{",
+									"//     if(pm.response.to.have.status(200)){",
+									"//         var data = pm.response.json();",
+									"//         console.log(data);",
+									"//         pm.test(\"OTP Sent to your phone number\",function(){",
+									"//             pm.environment.set('currentUserName',data.user.username);",
+									"//             pm.environment.set('currentUserId',data.user.id);",
+									"//         });",
+									"//     }else{",
+									"//         throw Error(\"Unable to Register\")",
+									"//     }",
+									"// }catch(e){",
+									"//     console.log(e);",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"{{currentUserEmail}}\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}login",
+							"host": [
+								"{{baseUrl}}login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"\",\n    \"password\":\"123456\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/login",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:26:25 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:26:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User Logged in Successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 7,\n            \"first_name\": \"Kraig\",\n            \"last_name\": \"Johnson\",\n            \"email\": \"orion84@hotmail.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2022-11-22T06:25:02.000000Z\",\n            \"updated_at\": \"2022-11-22T06:25:02.000000Z\"\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIzIiwianRpIjoiYTQyMmIzOTdjMWVmYzFjZDg5NWJiZWZlNTRmNzVjMDViYjViYWJmM2RhM2Q0Yjk2ZmY2YzUzNThmMmNiMjZiNDg1YmI5YWYyZThjN2VjYjMiLCJpYXQiOjE2NjkwOTgzODUuNTYwMDcxLCJuYmYiOjE2NjkwOTgzODUuNTYwMDcyLCJleHAiOjE3MDA2MzQzODUuNTU1Mzc0LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.eyzRB68I5S-nsuamDoJ3coKSImnVndfpLyTn4xvJd05xsk3fVTSASQL52vo6Dk7X2RRWGE_m20z2UF8ABEOicKgiLJjFr4bb4nluZJadlTZHktoXIH4nIoO1OKWLZrKc1c6k6XWBGX0AIMd7WQIrvcHClsJ81yTO3l1rIzs15GA_acxzLR0BV74waMuFkCcrs6cbxZKdtWxDX87j1InHxqIHyynoF9V7VqoL1_Ut15_ueXndmcfPL4nPMYVpQRg0wAKO_B7Iag3vYRKxDqdiXVBee3xpaB-cU-MJUgUR0qIF3S0l3QhAkdCw3NTyvaDmmPrwXW8oi-O0Mn8CSHa5Xo5G6AOu4gBZj_c4usyEdqGGRMW0sSdDrypLBEu47NIm4dGD_31t1m5hXrxVAYSyGKS-1jHd-Rf-rsyu6YAAjo8bx8XzL83P9Ym1jYkU-B2uB75E9KOeyRx0lDgc9B0FOIB9VD-lpUk0_WwVwHOu7DXRKmbWzwsWUNGdlfQpWTxfC7AqrBXbxulh1HxieX1D-VLC2bxvdS3rFEQqZYXdTF_iJmhA6lMv0Zvm4TN9PW3alat3OUElWA5zmLIzjF7gm7p8NRNytqO9n_tDkglFjw6Hqqq7JvT2nWq4fTFgiJWUuq-GbvlNxo-MWelhhXTtzmdpxrXm9O64ssyXufwCxvM\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Manage Users",
+			"item": [
+				{
+					"name": "Get Users List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}users?per_page=5",
+							"host": [
+								"{{baseUrl}}users"
+							],
+							"query": [
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Users List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}users?per_page=5",
+									"host": [
+										"{{baseUrl}}users"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:41:49 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 06:41:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Users list\",\n    \"data\": {\n        \"users\": {\n            \"current_page\": 1,\n            \"data\": [\n                {\n                    \"id\": 1,\n                    \"first_name\": \"Lester\",\n                    \"last_name\": \"Altenwerth\",\n                    \"email\": \"kamille_gerhold7@gmail.com\",\n                    \"email_verified_at\": null,\n                    \"created_at\": \"2022-11-22T06:03:03.000000Z\",\n                    \"updated_at\": \"2022-11-22T06:03:03.000000Z\"\n                },\n                {\n                    \"id\": 2,\n                    \"first_name\": \"Jake\",\n                    \"last_name\": \"Jaskolski\",\n                    \"email\": \"lorenzo_kunze52@yahoo.com\",\n                    \"email_verified_at\": null,\n                    \"created_at\": \"2022-11-22T06:06:27.000000Z\",\n                    \"updated_at\": \"2022-11-22T06:06:27.000000Z\"\n                },\n                {\n                    \"id\": 3,\n                    \"first_name\": \"Fannie\",\n                    \"last_name\": \"Runolfsson\",\n                    \"email\": \"nova_langosh65@yahoo.com\",\n                    \"email_verified_at\": null,\n                    \"created_at\": \"2022-11-22T06:12:01.000000Z\",\n                    \"updated_at\": \"2022-11-22T06:12:01.000000Z\"\n                },\n                {\n                    \"id\": 4,\n                    \"first_name\": \"Marielle\",\n                    \"last_name\": \"Mohr\",\n                    \"email\": \"catharine88@hotmail.com\",\n                    \"email_verified_at\": null,\n                    \"created_at\": \"2022-11-22T06:13:25.000000Z\",\n                    \"updated_at\": \"2022-11-22T06:13:25.000000Z\"\n                },\n                {\n                    \"id\": 5,\n                    \"first_name\": \"Minnie\",\n                    \"last_name\": \"Spencer\",\n                    \"email\": \"adrienne.boyer@yahoo.com\",\n                    \"email_verified_at\": null,\n                    \"created_at\": \"2022-11-22T06:13:53.000000Z\",\n                    \"updated_at\": \"2022-11-22T06:13:53.000000Z\"\n                }\n            ],\n            \"first_page_url\": \"http://127.0.0.1:8000/api/users?page=1\",\n            \"from\": 1,\n            \"next_page_url\": \"http://127.0.0.1:8000/api/users?page=2\",\n            \"path\": \"http://127.0.0.1:8000/api/users\",\n            \"per_page\": \"5\",\n            \"prev_page_url\": null,\n            \"to\": 5\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"{{$randomFirstName}}\",\n    \"last_name\":\"{{$randomLastName}}\",\n    \"email\":\"{{$randomEmail}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}users/{{currentUserId}}",
+							"host": [
+								"{{baseUrl}}users"
+							],
+							"path": [
+								"{{currentUserId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\":\"{{$randomFirstName}}\",\n    \"last_name\":\"{{$randomLastName}}\",\n    \"email\":\"{{$randomEmail}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}users/{{currentUserId}}",
+									"host": [
+										"{{baseUrl}}users"
+									],
+									"path": [
+										"{{currentUserId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 07:08:34 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 07:08:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "45"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User Detail Updated Successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 7,\n            \"first_name\": \"Stephanie\",\n            \"last_name\": \"Corwin\",\n            \"email\": \"lyla72@gmail.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2022-11-22T06:25:02.000000Z\",\n            \"updated_at\": \"2022-11-22T07:08:34.000000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}users/{{currentUserId}}",
+							"host": [
+								"{{baseUrl}}users"
+							],
+							"path": [
+								"{{currentUserId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete User",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}users/{{currentUserId}}",
+									"host": [
+										"{{baseUrl}}users"
+									],
+									"path": [
+										"{{currentUserId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 07:09:16 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 07:09:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.9"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User Deleted Successfully\",\n    \"data\": {\n        \"user\": {\n            \"id\": 3,\n            \"first_name\": \"Fannie\",\n            \"last_name\": \"Runolfsson\",\n            \"email\": \"nova_langosh65@yahoo.com\",\n            \"email_verified_at\": null,\n            \"created_at\": \"2022-11-22T06:12:01.000000Z\",\n            \"updated_at\": \"2022-11-22T06:12:01.000000Z\"\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{authToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		},
+		{
+			"key": "currentUserId",
+			"value": ""
+		},
+		{
+			"key": "currentUserEmail",
+			"value": ""
+		},
+		{
+			"key": "authToken",
+			"value": ""
+		}
+	]
+}
